@@ -30,26 +30,16 @@ def get_position(start, distance, direction)
   end
 end
 
-def run_instructions(instructions)
-  start = 50
-  ticks = 0
-  
-  instructions.each do |instruction|
-    direction = instruction[0]
-    distance = instruction[1..-1].to_i
-    ticks += count_ticks(start, distance, direction)
-    start = get_position(start, distance, direction)
-  end
 
-  ticks
+# Main function
+start = 50
+ticks = 0
+
+File.foreach("#{__dir__}/input.txt", chomp: true) do |line|
+  direction = line[0]
+  distance = line[1..-1].to_i
+  ticks += count_ticks(start, distance, direction)
+  start = get_position(start, distance, direction)
 end
 
-def main()
-  inputFile = File.open("input.txt", "r")
-  instructions = inputFile.readlines.map(&:chomp)
-  inputFile.close
-  password = run_instructions(instructions)
-  puts "Password: " + password.to_s
-end
-
-main()
+puts "Password: #{ticks}"
