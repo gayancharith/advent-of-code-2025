@@ -17,7 +17,7 @@ def count_ticks(start, distance, direction)
     end
   end
 
-  return 0
+  0
 end
 
 def get_position(start, distance, direction)
@@ -42,4 +42,6 @@ File.foreach("#{__dir__}/input.txt", chomp: true) do |line|
   start = get_position(start, distance, direction)
 end
 
+puts "=" * 50
+puts "Advent of Code - Puzzle 1"
 puts "Password: #{ticks}"
